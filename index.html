@@ -614,11 +614,11 @@
             { id: 6, name: 'حصص تجريبية', amount: 18.75, description: 'حصص تجريبية للقرآن (25 حصة)', date: '2026-08-18' },
             { id: 7, name: 'حصص تجريبية الإنجليزي', amount: 18, description: 'حصص تجريبية للإنجليزي (6 حصص × 3 د)', date: '2026-08-18' },
             { id: 8, name: 'حصص تجريبية العربي', amount: 15, description: 'حصص تجريبية للعربي (6 حصص × 2.5 د)', date: '2026-08-18' },
-            { id: 9, name: 'مصروفات أخرى', amount: 720.25, description: 'الفرق بين إجمالي المدفوعات المسجلة والإيرادات المعتمدة', date: '2026-08-19' }
+            { id: 9, name: 'مصروفات أخرى', amount: 236.94, description: 'مبلغ إضافي لضبط الرصيد النهائي على المعتمد', date: '2026-08-19' }
         ];
 
-        // الإيرادات المعتمدة معدّلة يدويًا إلى 458 د (بدل مجموع دفعات الطالبات الفعلي)
-        const APPROVED_REVENUE = 458;
+        // الرصيد المستهدف = 458 د بعد خصم كل المصاريف (بما فيها مصروفات أخرى) من الإيرادات الفعلية
+        const TARGET_BALANCE = 458;
         
         const initialStudents = [
             { id: 1, name: 'لجين', section: 'قرآن', joinDate: '2025-08-16', monthlyRate: 20, teacher: 1, paymentStatus: 'مدفوع', totalPaid: 100, payments: [20, 20, 20, 20, 20], notes: '✅ طالبة منتظمة - السبت 14:00 والاثنين 16:20' },
@@ -904,10 +904,10 @@
         }
 
         function getStats() {
-            const totalRevenue = APPROVED_REVENUE;
+            const totalRevenue = students.reduce((sum, s) => sum + s.totalPaid, 0);
             const totalExpenses = expenses.reduce((sum, e) => sum + e.amount, 0);
-            // الرصيد الحالي معتمد يدويًا على نفس قيمة الإيرادات (458 د)، والفرق تم تحويله بالكامل إلى بند "مصروفات أخرى" أعلاه
-            const netProfit = APPROVED_REVENUE;
+            // الرصيد ناتج فعلي عن طرح المصاريف من الإيرادات، وليس رقمًا ثابتًا
+            const netProfit = totalRevenue - totalExpenses;
             const totalStudents = students.length;
             const teachersProfit = totalRevenue * 0.5;
             const platformProfit = totalRevenue * 0.5 - totalExpenses;
@@ -990,7 +990,6 @@
                 </div>
             </div>`;
             
-            html += '<p style="color:#888; font-size:0.85em; margin-bottom:15px;">* الإيرادات المعروضة أعلاه هي الرقم المعتمد (458 د)، والفرق بينه وبين مجموع دفعات الطالبات المسجلة منقول إلى بند "مصروفات أخرى" أدناه.</p>';
             html += '<h3 class="section-title">📋 قائمة المصاريف والمكافآت ورأس المال</h3>';
             
             if (expenses.length === 0) {
