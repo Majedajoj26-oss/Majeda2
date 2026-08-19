@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blend - إدارة المنصة التعليمية الشاملة</title>
+    <title>Blend - إدارة المنصة التعليمية</title>
     <style>
         * {
             margin: 0;
@@ -15,45 +15,113 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 12px;
+            -webkit-touch-callout: none;
         }
         
         .container {
             max-width: 1600px;
             margin: 0 auto;
             background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 8px;
+            }
+
+            .container {
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+
+            .container {
+                border-radius: 8px;
+                box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            }
         }
         
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 30px;
+            padding: 20px 15px;
             text-align: center;
         }
         
         .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+            font-size: 2em;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5em;
+                margin-bottom: 5px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 12px 8px;
+            }
+
+            .header h1 {
+                font-size: 1.3em;
+            }
         }
         
         .tabs {
             display: flex;
             border-bottom: 2px solid #eee;
-            padding: 0 20px;
-            gap: 5px;
+            padding: 0 10px;
+            gap: 3px;
             background: #f8f9fa;
             flex-wrap: wrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
         
         .tab-button {
-            padding: 12px 20px;
+            padding: 10px 12px;
             border: none;
             background: none;
             cursor: pointer;
-            font-size: 1em;
+            font-size: 0.9em;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .tabs {
+                padding: 0 8px;
+                gap: 2px;
+            }
+
+            .tab-button {
+                font-size: 0.8em;
+                padding: 8px 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tab-button {
+                font-size: 0.7em;
+                padding: 6px 8px;
+            }
+        }
             color: #666;
             border-bottom: 3px solid transparent;
             transition: all 0.3s;
@@ -71,7 +139,19 @@
         }
         
         .content {
-            padding: 30px;
+            padding: 20px 15px;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 15px 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .content {
+                padding: 10px 8px;
+            }
         }
         
         .tab-content {
@@ -90,79 +170,158 @@
         
         .form-group {
             display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 8px;
+            margin-bottom: 15px;
             flex-wrap: wrap;
             align-items: flex-end;
         }
         
         .form-group input,
-        .form-group select,
-        .form-group textarea {
-            padding: 10px 15px;
+        .form-group select {
+            padding: 8px 10px;
             border: 1px solid #ddd;
             border-radius: 8px;
-            font-size: 1em;
+            font-size: 0.9em;
             flex: 1;
-            min-width: 120px;
+            min-width: 80px;
             font-family: inherit;
         }
-        
-        .form-group textarea {
-            min-height: 60px;
-            resize: vertical;
-            flex-basis: 100%;
+
+        @media (max-width: 768px) {
+            .form-group {
+                gap: 6px;
+                margin-bottom: 12px;
+            }
+
+            .form-group input,
+            .form-group select {
+                font-size: 0.8em;
+                padding: 6px 8px;
+                min-width: 70px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-group input,
+            .form-group select {
+                font-size: 0.75em;
+                padding: 5px 6px;
+                min-width: 60px;
+            }
         }
         
         .form-group button {
-            padding: 10px 25px;
+            padding: 8px 16px;
             background: #667eea;
             color: white;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 1em;
+            font-size: 0.9em;
             transition: background 0.3s;
             white-space: nowrap;
+            min-width: 80px;
         }
         
         .form-group button:hover {
             background: #5568d3;
         }
-        
-        .form-group button:disabled {
-            background: #aaa;
-            cursor: not-allowed;
+
+        @media (max-width: 768px) {
+            .form-group button {
+                font-size: 0.8em;
+                padding: 6px 12px;
+                min-width: 70px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-group button {
+                font-size: 0.75em;
+                padding: 5px 10px;
+                min-width: 60px;
+            }
         }
         
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            font-size: 0.95em;
-        }
-        
-        #studentsTable, #teachersContent {
+            font-size: 0.9em;
+            display: block;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
-        }
-        
-        #studentsTable table, #teachersContent table {
+            touch-action: pan-x;
             min-width: 100%;
+        }
+
+        thead {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        tbody {
+            display: block;
+            overflow: visible;
+        }
+
+        tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: right;
+            word-wrap: break-word;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+            min-width: 60px;
+        }
+
+        @media (max-width: 768px) {
+            table {
+                font-size: 0.75em;
+                white-space: normal;
+            }
+
+            th, td {
+                padding: 6px 5px !important;
+                min-width: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            table {
+                font-size: 0.7em;
+            }
+
+            th, td {
+                padding: 4px 3px !important;
+                min-width: 40px;
+            }
         }
         
         th {
             background: #f0f0f0;
-            padding: 12px;
+            padding: 8px;
             text-align: right;
             font-weight: 600;
             color: #333;
             border-bottom: 2px solid #ddd;
+            font-size: 0.9em;
+            word-wrap: break-word;
+            word-break: break-word;
         }
         
         td {
-            padding: 12px;
+            padding: 8px;
             border-bottom: 1px solid #eee;
+            word-wrap: break-word;
+            word-break: break-word;
         }
         
         tr:hover {
@@ -170,13 +329,21 @@
         }
         
         .btn-small {
-            padding: 6px 12px;
-            margin: 0 3px;
+            padding: 4px 8px;
+            margin: 0 2px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 0.9em;
-            transition: all 0.3s;
+            font-size: 0.8em;
+            min-width: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .btn-small {
+                font-size: 0.7em;
+                padding: 3px 6px;
+                min-width: 45px;
+            }
         }
         
         .btn-delete {
@@ -233,6 +400,18 @@
             font-weight: bold;
         }
         
+        .stat-card.success {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+        }
+        
+        .stat-card.danger {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        }
+        
+        .stat-card.warning {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+        }
+        
         #message {
             display: none;
             padding: 15px;
@@ -242,12 +421,6 @@
             background: #d4edda;
             color: #155724;
             border: 1px solid #c3e6cb;
-        }
-        
-        #message.error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
         }
         
         .empty-state {
@@ -263,85 +436,81 @@
             font-size: 1.2em;
         }
         
-        .schedule-day {
-            margin-bottom: 30px;
-            border: 2px solid #667eea;
-            border-radius: 10px;
-            padding: 20px;
-            background: #f8f9ff;
-        }
-        
-        .schedule-day h3 {
-            color: #667eea;
-            margin-bottom: 15px;
-            font-size: 1.2em;
-        }
-        
-        .schedule-slot {
-            background: white;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            border-right: 4px solid #667eea;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .schedule-slot.stopped {
-            border-right-color: #dc3545;
-            opacity: 0.6;
-        }
-        
-        .slot-info {
-            flex-grow: 1;
-        }
-        
-        .slot-time {
-            font-weight: bold;
-            color: #667eea;
-            font-size: 1.1em;
-        }
-        
-        .slot-students {
-            color: #666;
-            margin-top: 5px;
-        }
-        
-        .slot-stopped {
-            color: #dc3545;
-            font-weight: bold;
-            margin-right: 15px;
-        }
-        
         .section-title {
-            margin-top: 30px;
-            margin-bottom: 20px;
-            font-size: 1.3em;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            font-size: 1.1em;
             color: #333;
             border-bottom: 2px solid #667eea;
-            padding-bottom: 10px;
+            padding-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                margin-top: 15px;
+                margin-bottom: 10px;
+                font-size: 1em;
+                padding-bottom: 6px;
+            }
         }
         
-        .expense-card {
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        
+        .badge-success {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .badge-warning {
             background: #fff3cd;
-            padding: 15px;
-            border-radius: 8px;
-            border-right: 4px solid #ffc107;
-            margin-bottom: 15px;
-        }
-        
-        .expense-card h4 {
             color: #856404;
-            margin-bottom: 5px;
         }
         
-        .expense-card .amount {
-            font-size: 1.3em;
-            font-weight: bold;
+        .badge-gift {
+            background: #e8daef;
+            color: #6f42c1;
+        }
+        
+        .search-box {
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        .reset-bar {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .reset-bar button {
+            background: none;
+            border: 1px solid #dc3545;
             color: #dc3545;
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85em;
         }
-        
+
+        .reset-bar button:hover {
+            background: #dc3545;
+            color: white;
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -382,15 +551,6 @@
             margin-top: 20px;
         }
         
-        .btn-primary {
-            background: #667eea;
-            color: white;
-            padding: 10px 25px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        
         .btn-secondary {
             background: #6c757d;
             color: white;
@@ -399,68 +559,46 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        
-        .badge {
-            display: inline-block;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 600;
-            margin: 0 5px;
-        }
-        
-        .badge-success {
-            background: #d4edda;
-            color: #155724;
-        }
-        
-        .badge-warning {
+
+        .expense-item {
             background: #fff3cd;
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-right: 4px solid #ffc107;
+        }
+
+        .expense-item strong {
             color: #856404;
         }
-        
-        .badge-danger {
-            background: #f8d7da;
-            color: #721c24;
-        }
-        
-        .badge-info {
-            background: #d1ecf1;
-            color: #0c5460;
-        }
-        
-        .search-box {
-            margin-bottom: 20px;
-            width: 100%;
-            max-width: 500px;
-        }
-        
-        .search-box input {
-            width: 100%;
+
+        .income-item {
+            background: #d4edda;
             padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1em;
+            border-radius: 5px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-right: 4px solid #28a745;
         }
 
-        .reset-bar {
-            text-align: left;
-            margin-bottom: 10px;
+        .income-item strong {
+            color: #155724;
         }
 
-        .reset-bar button {
-            background: none;
-            border: 1px solid #dc3545;
-            color: #dc3545;
-            padding: 6px 14px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.85em;
+        /* السحب الأفقي السلس للجداول على الأجهزة المحمولة */
+        div[style*="overflow-x"] {
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+            cursor: grab;
         }
 
-        .reset-bar button:hover {
-            background: #dc3545;
-            color: white;
+        div[style*="overflow-x"]:active {
+            cursor: grabbing;
         }
     </style>
 </head>
@@ -468,22 +606,51 @@
     <div class="container">
         <div class="header">
             <h1>🎓 Blend</h1>
-            <p>منصة إدارة التعليم الأونلاين الشاملة</p>
+            <p>منصة إدارة التعليم الأونلاين</p>
         </div>
         
         <div class="tabs">
-            <button class="tab-button active" onclick="switchTab('students', this)">👥 الطالبات</button>
-            <button class="tab-button" onclick="switchTab('schedule', this)">📅 جدول المواعيد</button>
-            <button class="tab-button" onclick="switchTab('expenses', this)">💰 المصاريف</button>
-            <button class="tab-button" onclick="switchTab('analytics', this)">📊 التحليلات</button>
+            <button class="tab-button active" onclick="switchTab('sessions', this)">📅 مواعيد الحصص</button>
+            <button class="tab-button" onclick="switchTab('students', this)">👥 الطالبات</button>
+            <button class="tab-button" onclick="switchTab('expenses', this)">💸 المصاريف</button>
+            <button class="tab-button" onclick="switchTab('profit', this)">📊 صافي الربح</button>
             <button class="tab-button" onclick="switchTab('teachers', this)">👨‍🏫 المعلمات</button>
         </div>
         
         <div class="content">
             <div id="message"></div>
             
+            <!-- تبويب الحصص -->
+            <div id="sessions" class="tab-content active">
+                <h2>📅 مواعيد الحصص</h2>
+                
+                <div class="form-group">
+                    <select id="sessionTeacher">
+                        <option value="">اختر المعلمة</option>
+                        <option value="1">مس بتول (قرآن)</option>
+                        <option value="2">مس إشراق (عربي/حروف)</option>
+                        <option value="3">مس مها (انجليزي)</option>
+                    </select>
+                    <select id="sessionDate">
+                        <option value="">اختر اليوم</option>
+                        <option value="الخميس">الخميس</option>
+                        <option value="السبت">السبت</option>
+                        <option value="الأحد">الأحد</option>
+                        <option value="الاثنين">الاثنين</option>
+                        <option value="الثلاثاء">الثلاثاء</option>
+                        <option value="الأربعاء">الأربعاء</option>
+                    </select>
+                    <input type="time" id="sessionTime" placeholder="وقت الحصة">
+                    <input type="text" id="sessionStudents" placeholder="الطالبات">
+                    <input type="text" id="sessionSection" placeholder="القسم">
+                    <button onclick="addSession()">➕ إضافة حصة</button>
+                </div>
+                
+                <div id="sessionsTable"></div>
+            </div>
+            
             <!-- تبويب الطالبات -->
-            <div id="students" class="tab-content active">
+            <div id="students" class="tab-content">
                 <h2>إدارة الطالبات</h2>
                 
                 <div class="search-box">
@@ -496,12 +663,13 @@
                         <option>قرآن</option>
                         <option>عربي</option>
                         <option>انجليزي</option>
+                        <option>حروف</option>
                     </select>
                     <input type="date" id="joinDate" placeholder="تاريخ الانضمام">
                     <input type="number" id="monthlyRate" placeholder="السعر الشهري" min="0" step="0.5">
                     <select id="teacher">
                         <option value="1">مس بتول (قرآن)</option>
-                        <option value="2">مس إشراق (عربي)</option>
+                        <option value="2">مس إشراق (عربي/حروف)</option>
                         <option value="3">مس مها (انجليزي)</option>
                     </select>
                     <button id="studentSubmitBtn" onclick="addStudent()">➕ إضافة</button>
@@ -510,38 +678,30 @@
                 <div id="studentsTable"><div class="loading-state">جارٍ التحميل...</div></div>
             </div>
             
-            <!-- تبويب جدول المواعيد -->
-            <div id="schedule" class="tab-content">
-                <h2>📅 جدول المواعيد الأسبوعي</h2>
-                <div id="scheduleContent"></div>
-            </div>
-            
             <!-- تبويب المصاريف -->
             <div id="expenses" class="tab-content">
-                <h2>💰 إدارة المصاريف والمكافآت ورأس المال</h2>
-                
+                <h2>💸 المصاريف</h2>
+
                 <div class="form-group">
-                    <input type="text" id="expenseName" placeholder="نوع البند (مثال: مكافأة ماجدة، رأس مال)">
-                    <input type="number" id="expenseAmount" placeholder="المبلغ" min="0" step="0.5">
-                    <input type="text" id="expenseDescription" placeholder="وصف البند">
-                    <input type="date" id="expenseDate">
-                    <button onclick="addExpense()">➕ إضافة بند</button>
+                    <input type="text" id="expenseName" placeholder="اسم المصروف">
+                    <input type="number" id="expenseAmount" placeholder="المبلغ" min="0" step="0.01">
+                    <button onclick="addExpense()">➕ إضافة مصروف</button>
                 </div>
-                
-                <div id="expensesContent"><div class="loading-state">جارٍ التحميل...</div></div>
+
+                <div id="expensesContent"></div>
             </div>
-            
-            <!-- تبويب التحليلات -->
-            <div id="analytics" class="tab-content">
-                <h2>📊 التحليلات والأرباح</h2>
-                <div id="analyticsContent"></div>
+
+            <!-- تبويب صافي الربح -->
+            <div id="profit" class="tab-content">
+                <h2>📊 صافي الربح</h2>
+                <div id="profitContent"></div>
             </div>
             
             <!-- تبويب المعلمات -->
             <div id="teachers" class="tab-content">
-                <h2>👨‍🏫 إدارة المعلمات</h2>
+                <h2>👨‍🏫 توزيع الأرباح على المعلمات</h2>
                 <div class="reset-bar">
-                    <button onclick="resetAllData()">🗑️ إعادة تعيين كل البيانات</button>
+                    <button onclick="resetAllData()">🗑️ إعادة تعيين البيانات</button>
                 </div>
                 <div id="teachersContent"></div>
             </div>
@@ -561,111 +721,124 @@
 
     <script>
         let students = [];
-        let expenses = [];
         let filteredStudents = [];
-        const teachers = [
-            { id: 1, name: 'مس بتول', section: 'قرآن', percentage: 50 },
-            { id: 2, name: 'مس إشراق', section: 'عربي', percentage: 50 },
-            { id: 3, name: 'مس مها', section: 'انجليزي', percentage: 50 }
-        ];
+        let customExpenses = [];
+        let sessions = [];
         
-        const schedule = {
-            'السبت': [
-                { time: '14:00', students: 'لجين وبيسان', stopped: false },
-                { time: '15:00', students: 'ليلى', stopped: false },
-                { time: '15:30', students: 'هاشم', stopped: false },
-                { time: '16:00', students: 'لمى', stopped: false },
-                { time: '17:00', students: 'فرح', stopped: false }
-            ],
-            'الأحد': [
-                { time: '15:30', students: 'زين ومسك', stopped: false },
-                { time: '17:00', students: 'ليلاس', stopped: false }
-            ],
-            'الاثنين': [
-                { time: '14:00', students: 'ليلى', stopped: false },
-                { time: '14:30', students: 'هاشم', stopped: false },
-                { time: '16:20', students: 'لجين وبيسان', stopped: false },
-                { time: '16:30', students: 'فرح', stopped: false },
-                { time: '15:30', students: 'سيلينا', stopped: true },
-                { time: '17:00', students: 'عاصم', stopped: true }
-            ],
-            'الثلاثاء': [
-                { time: '17:00', students: 'ليلاس', stopped: false }
-            ],
-            'الأربعاء': [
-                { time: '15:30', students: 'زين ومسك', stopped: false },
-                { time: '17:00', students: 'عاصم', stopped: true }
-            ],
-            'الخميس': [
-                { time: '15:30', students: 'لمى', stopped: false },
-                { time: '19:00', students: 'سيلينا', stopped: true }
-            ]
-        };
+        const teachers = [
+            { id: 1, name: 'مس بتول', section: 'قرآن' },
+            { id: 2, name: 'مس إشراق', section: 'عربي/حروف' },
+            { id: 3, name: 'مس مها', section: 'انجليزي' }
+        ];
         
         let editingId = null;
+        let editingExpenseId = null;
+        let editingSessionId = null;
 
-        // المصاريف تشمل الآن مكافآت ماجدة وولاء ورأس المال
-        const initialExpenses = [
-            { id: 1, name: 'رأس المال', amount: 200, description: 'إضافة رأس المال الأساسي للمنصة', date: '2026-08-18' },
-            { id: 2, name: 'مكافأة ماجدة', amount: 51, description: 'مكافأة موظفة', date: '2026-08-18' },
-            { id: 3, name: 'مكافأة ولاء', amount: 25, description: 'مكافأة موظفة', date: '2026-08-18' },
-            { id: 4, name: 'ترويج', amount: 87.56, description: 'مصاريف ترويجية وإعلانات', date: '2026-08-18' },
-            { id: 5, name: 'حفل زفاف', amount: 68, description: 'تكاليف إضافية', date: '2026-08-18' },
-            { id: 6, name: 'حصص تجريبية', amount: 18.75, description: 'حصص تجريبية للقرآن (25 حصة)', date: '2026-08-18' },
-            { id: 7, name: 'حصص تجريبية الإنجليزي', amount: 18, description: 'حصص تجريبية للإنجليزي (6 حصص × 3 د)', date: '2026-08-18' },
-            { id: 8, name: 'حصص تجريبية العربي', amount: 15, description: 'حصص تجريبية للعربي (6 حصص × 2.5 د)', date: '2026-08-18' },
-            { id: 9, name: 'مصروفات أخرى', amount: 236.94, description: 'مبلغ إضافي لضبط الرصيد النهائي على المعتمد', date: '2026-08-19' }
+        // المصاريف الافتراضية
+        const defaultExpenses = [
+            { id: 1, name: 'مكافآت الموظفين', amount: 51 },
+            { id: 2, name: 'مكافأة موظف 2', amount: 25 },
+            { id: 3, name: 'مصاريف ترويج', amount: 87.56 },
+            { id: 4, name: 'مصاريف أخرى', amount: 68 },
+            { id: 5, name: 'مصاريف نت', amount: 18.75 },
+            { id: 6, name: 'حصص تجريبية', amount: 33 }
         ];
 
-        // الرصيد المستهدف = 458 د بعد خصم كل المصاريف (بما فيها مصروفات أخرى) من الإيرادات الفعلية
-        const TARGET_BALANCE = 458;
-        
+        // رأس المال
+        const capitalAmount = 200;
+
         const initialStudents = [
-            { id: 1, name: 'لجين', section: 'قرآن', joinDate: '2025-08-16', monthlyRate: 20, teacher: 1, paymentStatus: 'مدفوع', totalPaid: 100, payments: [20, 20, 20, 20, 20], notes: '✅ طالبة منتظمة - السبت 14:00 والاثنين 16:20' },
-            { id: 2, name: 'بيسان', section: 'قرآن', joinDate: '2025-08-16', monthlyRate: 20, teacher: 1, paymentStatus: 'مدفوع', totalPaid: 100, payments: [20, 20, 20, 20, 20], notes: 'السبت 14:00 والاثنين 16:20' },
-            { id: 3, name: 'ليلى', section: 'قرآن', joinDate: '2025-05-05', monthlyRate: 20, teacher: 1, paymentStatus: 'مدفوع', totalPaid: 20, payments: [20], notes: 'السبت 15:00 والاثنين 14:00' },
-            { id: 4, name: 'لمى', section: 'قرآن', joinDate: '2024-12-21', monthlyRate: 20, teacher: 1, paymentStatus: 'مدفوع', totalPaid: 80, payments: [20, 20, 20, 20], notes: 'السبت 16:00 والخميس 15:30' },
-            { id: 5, name: 'زين', section: 'قرآن', joinDate: '2025-08-17', monthlyRate: 20, teacher: 1, paymentStatus: 'مدفوع', totalPaid: 100, payments: [20, 20, 20, 20, 20], notes: 'الأحد 15:30 والأربعاء 15:30' },
-            { id: 6, name: 'مسك', section: 'قرآن', joinDate: '2025-08-17', monthlyRate: 20, teacher: 1, paymentStatus: 'مدفوع', totalPaid: 100, payments: [20, 20, 20, 20, 20], notes: 'الأحد 15:30 والأربعاء 15:30' },
-            { id: 7, name: 'عاصم', section: 'قرآن', joinDate: '2025-04-01', monthlyRate: 20, teacher: 1, paymentStatus: 'مدفوع', totalPaid: 60, payments: [20, 20, 20], notes: '🛑 متوقف - الاثنين 17:00 والأربعاء 17:00' },
-            { id: 8, name: 'سيلينا', section: 'قرآن', joinDate: '2025-07-01', monthlyRate: 20, teacher: 1, paymentStatus: 'مدفوع', totalPaid: 20, payments: [20], notes: '🛑 متوقفة - الاثنين 15:30 والخميس 19:00' },
-            { id: 9, name: 'محمد الشامي', section: 'قرآن', joinDate: '2025-08-12', monthlyRate: 20, teacher: 1, paymentStatus: 'معلق', totalPaid: 0, payments: [], notes: '⏳ لم يدفع بعد - السبت 15:30 والاثنين 14:30' },
-            { id: 10, name: 'ليالس', section: 'قرآن', joinDate: '2025-07-22', monthlyRate: 20, teacher: 1, paymentStatus: 'مدفوع', totalPaid: 20, payments: [20], notes: '✅ طالبة جديدة منتظمة - الأحد 17:00 والثلاثاء 17:00' },
-            { id: 11, name: 'فرح', section: 'قرآن', joinDate: '2026-08-17', monthlyRate: 20, teacher: 1, paymentStatus: 'معلق', totalPaid: 0, payments: [], giftSessions: 0, giftAmount: 0, notes: '⏳ لم تدفع - السبت 17:00 والاثنين 16:30' },
-            { id: 12, name: 'محمد ماهر', section: 'قرآن', joinDate: '2025-08-18', monthlyRate: 1.25, teacher: 1, paymentStatus: 'هدية', totalPaid: 6.25, payments: [6.25], giftSessions: 5, giftAmount: 6.25, notes: '🎁 حصص هدية - 5 حصص بـ 1.25 للحصة (للمعلمة)' },
-            { id: 13, name: 'تقى', section: 'انجليزي', joinDate: '2026-03-01', monthlyRate: 48, teacher: 3, paymentStatus: 'متوقف', totalPaid: 144, payments: [48, 48, 48], giftSessions: 0, giftAmount: 0, notes: '🛑 متوقفة - مس مها - 3 دفعات' },
-            { id: 14, name: 'بيسان', section: 'انجليزي', joinDate: '2026-03-01', monthlyRate: 48, teacher: 3, paymentStatus: 'متوقف', totalPaid: 144, payments: [48, 48, 48], giftSessions: 0, giftAmount: 0, notes: '🛑 متوقفة - مس مها - 3 دفعات' },
-            { id: 15, name: 'جوري', section: 'انجليزي', joinDate: '2026-03-01', monthlyRate: 48, teacher: 3, paymentStatus: 'متوقف', totalPaid: 144, payments: [48, 48, 48], giftSessions: 0, giftAmount: 0, notes: '🛑 متوقفة - مس مها - 3 دفعات' },
-            { id: 16, name: 'لجين', section: 'عربي', joinDate: '2026-04-01', monthlyRate: 40, teacher: 2, paymentStatus: 'متوقف', totalPaid: 80, payments: [40, 40], giftSessions: 0, giftAmount: 0, notes: '🛑 متوقفة - مس إشراق - دفعتان' },
-            { id: 17, name: 'هاشم', section: 'عربي', joinDate: '2026-08-01', monthlyRate: 40, teacher: 2, paymentStatus: 'نشط', totalPaid: 40, payments: [40], giftSessions: 0, giftAmount: 0, notes: '✨ مس إشراق - دفعة واحدة' },
-            { id: 18, name: 'هاشم', section: 'قرآن', joinDate: '2026-08-19', monthlyRate: 20, teacher: 1, paymentStatus: 'مدفوع', totalPaid: 20, payments: [20], giftSessions: 0, giftAmount: 0, notes: 'مس بتول - دفعة واحدة' }
+            { id: 1, name: 'لجين', section: 'قرآن', joinDate: '2025-08-16', monthlyRate: 20, teacher: 1, totalPaid: 100, payments: [20, 20, 20, 20, 20], isGift: false },
+            { id: 2, name: 'بيسان', section: 'قرآن', joinDate: '2025-08-16', monthlyRate: 20, teacher: 1, totalPaid: 100, payments: [20, 20, 20, 20, 20], isGift: false },
+            { id: 3, name: 'ليلى', section: 'قرآن', joinDate: '2025-05-05', monthlyRate: 20, teacher: 1, totalPaid: 40, payments: [20, 20], isGift: false },
+            { id: 4, name: 'لمى', section: 'قرآن', joinDate: '2024-12-21', monthlyRate: 20, teacher: 1, totalPaid: 80, payments: [20, 20, 20, 20], isGift: false },
+            { id: 5, name: 'زين', section: 'قرآن', joinDate: '2025-08-17', monthlyRate: 20, teacher: 1, totalPaid: 100, payments: [20, 20, 20, 20, 20], isGift: false },
+            { id: 6, name: 'مسك', section: 'قرآن', joinDate: '2025-08-17', monthlyRate: 20, teacher: 1, totalPaid: 100, payments: [20, 20, 20, 20, 20], isGift: false },
+            { id: 7, name: 'عاصم', section: 'قرآن', joinDate: '2025-04-01', monthlyRate: 20, teacher: 1, totalPaid: 60, payments: [20, 20, 20], isGift: false },
+            { id: 8, name: 'سيلينا', section: 'قرآن', joinDate: '2025-07-01', monthlyRate: 20, teacher: 1, totalPaid: 20, payments: [20], isGift: false },
+            { id: 9, name: 'محمد الشامي', section: 'قرآن', joinDate: '2025-08-12', monthlyRate: 20, teacher: 1, totalPaid: 0, payments: [], isGift: false },
+            { id: 10, name: 'ليلاس', section: 'قرآن', joinDate: '2025-07-22', monthlyRate: 20, teacher: 1, totalPaid: 20, payments: [20], isGift: false },
+            { id: 11, name: 'فرح', section: 'قرآن', joinDate: '2026-08-17', monthlyRate: 20, teacher: 1, totalPaid: 0, payments: [], isGift: false },
+            { id: 12, name: 'محمد ماهر', section: 'قرآن', joinDate: '2025-08-18', monthlyRate: 1.25, teacher: 1, totalPaid: 6.25, payments: [6.25], isGift: true },
+            { id: 13, name: 'تقى', section: 'انجليزي', joinDate: '2026-03-01', monthlyRate: 48, teacher: 3, totalPaid: 144, payments: [48, 48, 48], isGift: false },
+            { id: 14, name: 'بيسان', section: 'انجليزي', joinDate: '2026-03-01', monthlyRate: 48, teacher: 3, totalPaid: 144, payments: [48, 48, 48], isGift: false },
+            { id: 15, name: 'جوري', section: 'انجليزي', joinDate: '2026-03-01', monthlyRate: 48, teacher: 3, totalPaid: 144, payments: [48, 48, 48], isGift: false },
+            { id: 16, name: 'لجين', section: 'عربي', joinDate: '2026-04-01', monthlyRate: 40, teacher: 2, totalPaid: 80, payments: [40, 40], isGift: false },
+            { id: 17, name: 'هاشم', section: 'عربي', joinDate: '2026-08-01', monthlyRate: 40, teacher: 2, totalPaid: 40, payments: [40], isGift: false },
+            { id: 18, name: 'هاشم', section: 'قرآن', joinDate: '2026-08-19', monthlyRate: 20, teacher: 1, totalPaid: 20, payments: [20], isGift: false },
+            { id: 19, name: 'مريم', section: 'قرآن', joinDate: '2026-04-01', monthlyRate: 20, teacher: 1, totalPaid: 40, payments: [20, 20], isGift: false },
+            { id: 20, name: 'وسام', section: 'حروف', joinDate: '2026-08-19', monthlyRate: 20, teacher: 2, totalPaid: 20, payments: [20], isGift: false, isSpecial: true }
         ];
 
-        // تحميل البيانات المحفوظة (باستخدام نظام التخزين الدائم بدل localStorage)
-        async function loadData() {
+        // الحصص الافتراضية
+        const defaultSessions = [
+            // الخميس
+            { id: 1, day: 'الخميس', time: '15:15', students: 'لمى', teacher: 1, section: 'قرآن' },
+            { id: 2, day: 'الخميس', time: '18:00', students: 'محمد الشامي', teacher: 1, section: 'قرآن' },
+            
+            // السبت
+            { id: 3, day: 'السبت', time: '14:00', students: 'لجين وبيسان', teacher: 1, section: 'قرآن' },
+            { id: 4, day: 'السبت', time: '15:00', students: 'ليلى', teacher: 1, section: 'قرآن' },
+            { id: 5, day: 'السبت', time: '15:30', students: 'هاشم', teacher: 1, section: 'قرآن' },
+            { id: 6, day: 'السبت', time: '16:00', students: 'لمى', teacher: 1, section: 'قرآن' },
+            { id: 7, day: 'السبت', time: '17:00', students: 'محمد الشامي', teacher: 1, section: 'قرآن' },
+            { id: 8, day: 'السبت', time: '17:00', students: 'فرح', teacher: 1, section: 'قرآن' },
+            
+            // الأحد
+            { id: 9, day: 'الأحد', time: '15:30', students: 'زين ومسك', teacher: 1, section: 'قرآن' },
+            { id: 10, day: 'الأحد', time: '17:00', students: 'ليلاس', teacher: 1, section: 'قرآن' },
+            
+            // الاثنين
+            { id: 11, day: 'الاثنين', time: '14:00', students: 'ليلى', teacher: 1, section: 'قرآن' },
+            { id: 12, day: 'الاثنين', time: '14:30', students: 'هاشم', teacher: 1, section: 'قرآن' },
+            { id: 13, day: 'الاثنين', time: '15:30', students: 'هاشم', teacher: 2, section: 'عربي' },
+            { id: 14, day: 'الاثنين', time: '16:20', students: 'لجين وبيسان', teacher: 1, section: 'قرآن' },
+            { id: 15, day: 'الاثنين', time: '16:30', students: 'فرح', teacher: 1, section: 'قرآن' },
+            
+            // الثلاثاء
+            { id: 16, day: 'الثلاثاء', time: '17:00', students: 'ليلاس', teacher: 1, section: 'قرآن' },
+            
+            // الأربعاء
+            { id: 17, day: 'الأربعاء', time: '15:30', students: 'زين ومسك', teacher: 1, section: 'قرآن' },
+            { id: 18, day: 'الأربعاء', time: '16:00', students: 'هاشم', teacher: 2, section: 'دورة تأسيس اللغة العربية' },
+            { id: 19, day: 'الأربعاء', time: '18:00', students: 'محمد الشامي', teacher: 1, section: 'قرآن' }
+        ];
+
+        function loadData() {
+            const DATA_VERSION = 13;
             try {
-                const savedStudents = await window.storage.get('students', false);
-                students = savedStudents ? JSON.parse(savedStudents.value) : initialStudents;
+                const savedVersion = localStorage.getItem('blendVersion');
+                const needsRefresh = savedVersion !== DATA_VERSION.toString();
+
+                if (needsRefresh) {
+                    students = JSON.parse(JSON.stringify(initialStudents));
+                    customExpenses = JSON.parse(JSON.stringify(defaultExpenses));
+                    sessions = JSON.parse(JSON.stringify(defaultSessions));
+                } else {
+                    const savedStudents = localStorage.getItem('blendStudents');
+                    const savedExpenses = localStorage.getItem('blendExpenses');
+                    const savedSessions = localStorage.getItem('blendSessions');
+                    students = savedStudents ? JSON.parse(savedStudents) : initialStudents;
+                    customExpenses = savedExpenses ? JSON.parse(savedExpenses) : defaultExpenses;
+                    sessions = savedSessions ? JSON.parse(savedSessions) : defaultSessions;
+                }
+
+                localStorage.setItem('blendVersion', DATA_VERSION.toString());
+                saveData();
+                filteredStudents = [...students];
+                renderAll();
             } catch (e) {
+                console.error('خطأ:', e);
                 students = initialStudents;
+                customExpenses = defaultExpenses;
+                sessions = defaultSessions;
+                filteredStudents = [...students];
+                renderAll();
             }
-            try {
-                const savedExpenses = await window.storage.get('expenses', false);
-                expenses = savedExpenses ? JSON.parse(savedExpenses.value) : initialExpenses;
-            } catch (e) {
-                expenses = initialExpenses;
-            }
-
-            // إذا كانت أول مرة، احفظ البيانات الابتدائية
-            await saveData();
-
-            filteredStudents = [...students];
-            renderAll();
         }
 
-        window.addEventListener('load', function() {
-            loadData();
-        });
+        window.addEventListener('load', loadData);
 
         function switchTab(tabName, button) {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
@@ -674,19 +847,200 @@
             document.getElementById(tabName).classList.add('active');
             button.classList.add('active');
             
-            if (tabName === 'schedule') renderSchedule();
+            if (tabName === 'sessions') renderSessions();
             if (tabName === 'expenses') renderExpenses();
-            if (tabName === 'analytics') renderAnalytics();
+            if (tabName === 'profit') renderProfit();
             if (tabName === 'teachers') renderTeachers();
         }
 
-        async function saveData() {
-            try {
-                await window.storage.set('students', JSON.stringify(students), false);
-                await window.storage.set('expenses', JSON.stringify(expenses), false);
-            } catch (e) {
-                showMessage('⚠️ حدث خطأ أثناء الحفظ، حاول مرة أخرى', true);
+        function addSession() {
+            const teacher = document.getElementById('sessionTeacher').value;
+            const day = document.getElementById('sessionDay')?.value || document.getElementById('sessionDate')?.value;
+            const time = document.getElementById('sessionTime').value;
+            const students = document.getElementById('sessionStudents')?.value || '';
+            const section = document.getElementById('sessionSection')?.value || 'قرآن';
+
+            if (!teacher || !day || !time) {
+                alert('الرجاء ملء المعلومات المطلوبة');
+                return;
             }
+
+            if (editingSessionId) {
+                const session = sessions.find(s => s.id === editingSessionId);
+                if (session) {
+                    session.teacher = teacher;
+                    session.day = day;
+                    session.time = time;
+                    session.students = students;
+                    session.section = section;
+                }
+                editingSessionId = null;
+            } else {
+                sessions.push({
+                    id: Date.now(),
+                    teacher,
+                    day,
+                    time,
+                    students,
+                    section
+                });
+            }
+
+            saveData();
+            clearSessionForm();
+            renderSessions();
+            showMessage('تم الحفظ بنجاح ✓');
+        }
+
+        function editSession(id) {
+            const session = sessions.find(s => s.id === id);
+            if (session) {
+                document.getElementById('sessionTeacher').value = session.teacher;
+                document.getElementById('sessionDate').value = session.day;
+                document.getElementById('sessionTime').value = session.time;
+                if (document.getElementById('sessionStudents')) {
+                    document.getElementById('sessionStudents').value = session.students || '';
+                }
+                if (document.getElementById('sessionSection')) {
+                    document.getElementById('sessionSection').value = session.section || 'قرآن';
+                }
+                editingSessionId = id;
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function deleteSession(id) {
+            if (confirm('هل متأكد من حذف هذه الحصة؟')) {
+                sessions = sessions.filter(s => s.id !== id);
+                saveData();
+                renderSessions();
+                showMessage('تم الحذف ✓');
+            }
+        }
+
+        function clearSessionForm() {
+            document.getElementById('sessionTeacher').value = '';
+            document.getElementById('sessionDate').value = '';
+            document.getElementById('sessionTime').value = '';
+            if (document.getElementById('sessionStudents')) {
+                document.getElementById('sessionStudents').value = '';
+            }
+            if (document.getElementById('sessionSection')) {
+                document.getElementById('sessionSection').value = 'قرآن';
+            }
+        }
+
+        function renderSessions() {
+            const days = ['الخميس', 'السبت', 'الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء'];
+            let html = '';
+            
+            days.forEach(day => {
+                const daySessions = sessions.filter(s => s.day === day);
+                
+                if (daySessions.length > 0) {
+                    html += `
+                    <h3 class="section-title">📅 ${day}</h3>
+                    <div style="overflow-x: auto;">
+                        <table>
+                            <thead>
+                                <tr style="background: #667eea; color: white;">
+                                    <th>الوقت</th>
+                                    <th>الطالبات</th>
+                                    <th>المعلمة</th>
+                                    <th>القسم</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    `;
+                    
+                    daySessions.sort((a, b) => a.time.localeCompare(b.time)).forEach(session => {
+                        const teacher = teachers.find(t => t.id == session.teacher);
+                        html += `<tr>
+                            <td><strong>${session.time}</strong></td>
+                            <td>${session.students}</td>
+                            <td><strong>${teacher?.name || '-'}</strong></td>
+                            <td>${session.section}</td>
+                            <td>
+                                <button class="btn-small btn-edit" onclick="editSession(${session.id})">تعديل</button>
+                                <button class="btn-small btn-delete" onclick="deleteSession(${session.id})">حذف</button>
+                            </td>
+                        </tr>`;
+                    });
+                    
+                    html += '</tbody></table></div>';
+                }
+            });
+            
+            if (html === '') {
+                html = '<div class="empty-state"><p>لا توجد حصص مجدولة</p></div>';
+            }
+            
+            document.getElementById('sessionsTable').innerHTML = html;
+        }
+
+        function saveData() {
+            try {
+                localStorage.setItem('blendStudents', JSON.stringify(students));
+                localStorage.setItem('blendExpenses', JSON.stringify(customExpenses));
+                localStorage.setItem('blendSessions', JSON.stringify(sessions));
+            } catch (e) {
+                showMessage('⚠️ خطأ في الحفظ', true);
+            }
+        }
+
+        function addExpense() {
+            const name = document.getElementById('expenseName').value.trim();
+            const amount = parseFloat(document.getElementById('expenseAmount').value);
+
+            if (!name || isNaN(amount) || amount <= 0) {
+                alert('الرجاء إدخال اسم المصروف والمبلغ');
+                return;
+            }
+
+            if (editingExpenseId) {
+                const expense = customExpenses.find(e => e.id === editingExpenseId);
+                if (expense) {
+                    expense.name = name;
+                    expense.amount = amount;
+                }
+                editingExpenseId = null;
+            } else {
+                customExpenses.push({
+                    id: Date.now(),
+                    name,
+                    amount
+                });
+            }
+
+            saveData();
+            clearExpenseForm();
+            renderExpenses();
+            showMessage('تم الحفظ بنجاح ✓');
+        }
+
+        function editExpense(id) {
+            const expense = customExpenses.find(e => e.id === id);
+            if (expense) {
+                document.getElementById('expenseName').value = expense.name;
+                document.getElementById('expenseAmount').value = expense.amount;
+                editingExpenseId = id;
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function deleteExpense(id) {
+            if (confirm('هل متأكد من حذف هذا المصروف؟')) {
+                customExpenses = customExpenses.filter(e => e.id !== id);
+                saveData();
+                renderExpenses();
+                showMessage('تم الحذف ✓');
+            }
+        }
+
+        function clearExpenseForm() {
+            document.getElementById('expenseName').value = '';
+            document.getElementById('expenseAmount').value = '';
         }
 
         async function addStudent() {
@@ -697,7 +1051,7 @@
             const teacher = parseInt(document.getElementById('teacher').value);
 
             if (!name || !joinDate || !monthlyRate) {
-                alert('الرجاء ملء جميع الحقول المطلوبة');
+                alert('الرجاء ملء جميع الحقول');
                 return;
             }
 
@@ -706,11 +1060,13 @@
 
             if (editingId) {
                 const student = students.find(s => s.id === editingId);
-                student.name = name;
-                student.section = section;
-                student.joinDate = joinDate;
-                student.monthlyRate = monthlyRate;
-                student.teacher = teacher;
+                if (student) {
+                    student.name = name;
+                    student.section = section;
+                    student.joinDate = joinDate;
+                    student.monthlyRate = monthlyRate;
+                    student.teacher = teacher;
+                }
                 editingId = null;
                 btn.textContent = '➕ إضافة';
             } else {
@@ -721,16 +1077,14 @@
                     joinDate,
                     monthlyRate,
                     teacher,
-                    paymentStatus: 'نشط',
                     totalPaid: monthlyRate,
                     payments: [monthlyRate],
-                    giftSessions: 0,
-                    giftAmount: 0,
-                    notes: ''
+                    isGift: false,
+                    isSpecial: false
                 });
             }
 
-            await saveData();
+            saveData();
             clearForm();
             filteredStudents = [...students];
             renderAll();
@@ -740,21 +1094,23 @@
 
         function editStudent(id) {
             const student = students.find(s => s.id === id);
-            document.getElementById('studentName').value = student.name;
-            document.getElementById('section').value = student.section;
-            document.getElementById('joinDate').value = student.joinDate;
-            document.getElementById('monthlyRate').value = student.monthlyRate;
-            document.getElementById('teacher').value = student.teacher;
-            editingId = id;
-            document.getElementById('studentSubmitBtn').textContent = '✏️ تحديث';
-            window.scrollTo(0, 0);
+            if (student) {
+                document.getElementById('studentName').value = student.name;
+                document.getElementById('section').value = student.section;
+                document.getElementById('joinDate').value = student.joinDate;
+                document.getElementById('monthlyRate').value = student.monthlyRate;
+                document.getElementById('teacher').value = student.teacher;
+                editingId = id;
+                document.getElementById('studentSubmitBtn').textContent = '✏️ تحديث';
+                window.scrollTo(0, 0);
+            }
         }
 
         async function deleteStudent(id) {
             if (confirm('هل متأكد من الحذف؟')) {
                 students = students.filter(s => s.id !== id);
                 filteredStudents = [...students];
-                await saveData();
+                saveData();
                 renderAll();
                 showMessage('تم الحذف ✓');
             }
@@ -771,23 +1127,13 @@
 
         function showStudentDetails(id) {
             const student = students.find(s => s.id === id);
-            const days = Object.keys(schedule);
-            let scheduleHTML = '';
-            
-            days.forEach(day => {
-                schedule[day].forEach(slot => {
-                    if (slot.students.includes(student.name)) {
-                        scheduleHTML += `<p>🕐 ${day} - ${slot.time}</p>`;
-                    }
-                });
-            });
-            
+            if (!student) return;
+
             const modal = document.getElementById('studentModal');
             const modalBody = document.getElementById('modalBody');
             
             const joinDateObj = new Date(student.joinDate);
-            const expectedAmount = student.monthlyRate * (student.payments.length);
-            const remaining = expectedAmount - student.totalPaid;
+            let statusText = student.isGift ? '🎁 هدية' : (student.totalPaid > 0 ? '✅ مدفوع' : '⏳ معلق');
             
             let paymentsHTML = '<h4>📊 سجل الدفعات:</h4>';
             if (student.payments.length === 0) {
@@ -804,26 +1150,16 @@
                 <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
                     <p><strong>👤 الاسم:</strong> ${student.name}</p>
                     <p><strong>📚 القسم:</strong> ${student.section}</p>
-                    <p><strong>👨‍🏫 المعلمة:</strong> ${teachers.find(t => t.id === student.teacher).name}</p>
-                    <p><strong>📅 تاريخ الانضمام:</strong> ${joinDateObj.toLocaleDateString('en-CA')}</p>
+                    <p><strong>👨‍🏫 المعلمة:</strong> ${teachers.find(t => t.id === student.teacher)?.name || '-'}</p>
+                    <p><strong>📅 تاريخ:</strong> ${joinDateObj.toLocaleDateString('en-CA')}</p>
                 </div>
                 
                 <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-                    <p><strong>💰 السعر الشهري:</strong> <span style="font-size: 1.2em; color: #856404;">${student.monthlyRate} د</span></p>
-                    <p><strong>📈 عدد الدفعات:</strong> ${student.payments.length}</p>
-                    <p><strong>✅ إجمالي المدفوع:</strong> <span style="font-weight: bold; color: #155724;">${student.totalPaid} د</span></p>
-                    ${remaining > 0 ? `<p style="color: #dc3545;"><strong>❌ المتبقي:</strong> ${remaining} د</p>` : '<p style="color: #155724;"><strong>✅ مسدد</strong></p>'}
+                    <p><strong>💰 السعر:</strong> ${student.monthlyRate} د</p>
+                    <p><strong>📈 الدفعات:</strong> ${student.payments.length}</p>
+                    <p><strong>✅ المدفوع:</strong> ${student.totalPaid} د</p>
+                    <p><strong>📋 الحالة:</strong> <span class="badge ${student.isGift ? 'badge-gift' : 'badge-success'}">${statusText}</span></p>
                 </div>
-                
-                <div style="background: #e7f3ff; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-                    <p><strong>📋 حالة الدفع:</strong> <span class="badge ${student.paymentStatus === 'مدفوع' || student.paymentStatus === 'نشط' ? 'badge-success' : 'badge-warning'}">${student.paymentStatus}</span></p>
-                    ${student.notes ? `<p><strong>📝 ملاحظات:</strong> ${student.notes}</p>` : ''}
-                </div>
-                
-                ${scheduleHTML ? `<div style="background: #f0f8ff; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-                    <h4>🕐 المواعيد:</h4>
-                    ${scheduleHTML}
-                </div>` : ''}
                 
                 ${paymentsHTML}
             `;
@@ -833,58 +1169,6 @@
 
         function closeModal() {
             document.getElementById('studentModal').classList.remove('active');
-        }
-
-        async function addExpense() {
-            const name = document.getElementById('expenseName').value.trim();
-            const amount = parseFloat(document.getElementById('expenseAmount').value);
-            const description = document.getElementById('expenseDescription').value;
-            const date = document.getElementById('expenseDate').value;
-
-            if (!name || !amount || !date) {
-                alert('الرجاء ملء البيانات المطلوبة');
-                return;
-            }
-
-            expenses.push({
-                id: Date.now(),
-                name,
-                amount,
-                description,
-                date
-            });
-
-            await saveData();
-            document.getElementById('expenseName').value = '';
-            document.getElementById('expenseAmount').value = '';
-            document.getElementById('expenseDescription').value = '';
-            document.getElementById('expenseDate').value = '';
-            
-            renderExpenses();
-            showMessage('تم إضافة البند بنجاح ✓');
-        }
-
-        async function deleteExpense(id) {
-            if (confirm('هل متأكد من الحذف؟')) {
-                expenses = expenses.filter(e => e.id !== id);
-                await saveData();
-                renderExpenses();
-                showMessage('تم الحذف ✓');
-            }
-        }
-
-        async function resetAllData() {
-            if (confirm('سيؤدي هذا لحذف كل البيانات المحفوظة والعودة للبيانات الافتراضية. هل أنت متأكدة؟')) {
-                students = JSON.parse(JSON.stringify(initialStudents));
-                expenses = JSON.parse(JSON.stringify(initialExpenses));
-                await saveData();
-                filteredStudents = [...students];
-                renderAll();
-                renderExpenses();
-                renderAnalytics();
-                renderTeachers();
-                showMessage('تمت إعادة التعيين ✓');
-            }
         }
 
         function clearForm() {
@@ -903,35 +1187,44 @@
             setTimeout(() => msgEl.style.display = 'none', 3000);
         }
 
-        function getStats() {
-            const totalRevenue = students.reduce((sum, s) => sum + s.totalPaid, 0);
-            const totalExpenses = expenses.reduce((sum, e) => sum + e.amount, 0);
-            // الرصيد ناتج فعلي عن طرح المصاريف من الإيرادات، وليس رقمًا ثابتًا
-            const netProfit = totalRevenue - totalExpenses;
-            const totalStudents = students.length;
-            const teachersProfit = totalRevenue * 0.5;
-            const platformProfit = totalRevenue * 0.5 - totalExpenses;
+        function calculateStats() {
+            const studentRevenue = students.reduce((sum, s) => sum + s.totalPaid, 0);
+            const totalExpenses = customExpenses.reduce((sum, e) => sum + e.amount, 0);
+            const teachersShare = studentRevenue * 0.5;
+            const totalIncome = studentRevenue + capitalAmount;
+            const netProfit = totalIncome - totalExpenses - teachersShare;
 
-            return { totalRevenue, totalExpenses, netProfit, totalStudents, teachersProfit, platformProfit };
+            return {
+                studentRevenue,
+                capitalAmount,
+                totalIncome,
+                totalExpenses,
+                teachersShare,
+                netProfit,
+                totalStudents: students.length
+            };
         }
 
         function renderStudents() {
             let html = '';
             if (filteredStudents.length === 0) {
-                html = '<div class="empty-state"><p>لا توجد طالبات مسجلة</p></div>';
+                html = '<div class="empty-state"><p>لا توجد طالبات</p></div>';
             } else {
-                html += '<table><thead><tr><th>الاسم</th><th>القسم</th><th>المعلمة</th><th>تاريخ الانضمام</th><th>السعر</th><th>عدد الدفعات</th><th>المدفوع</th><th>الحالة</th><th>الإجراءات</th></tr></thead><tbody>';
+                html += '<table><thead><tr><th>الاسم</th><th>القسم</th><th>المعلمة</th><th>تاريخ</th><th>السعر</th><th>الدفعات</th><th>المدفوع</th><th>الحالة</th><th>الإجراءات</th></tr></thead><tbody>';
                 filteredStudents.forEach(student => {
                     const teacher = teachers.find(t => t.id === student.teacher);
+                    let statusClass = student.isGift ? 'badge-gift' : (student.totalPaid > 0 ? 'badge-success' : 'badge-warning');
+                    let statusText = student.isGift ? '🎁 هدية' : (student.totalPaid > 0 ? '✅ مدفوع' : '⏳ معلق');
+                    
                     html += `<tr>
                         <td><strong>${student.name}</strong></td>
                         <td>${student.section}</td>
-                        <td>${teacher ? teacher.name : '-'}</td>
+                        <td>${teacher?.name || '-'}</td>
                         <td>${new Date(student.joinDate).toLocaleDateString('en-CA')}</td>
                         <td>${student.monthlyRate} د</td>
-                        <td><strong>${student.payments.length}</strong></td>
-                        <td style="color: #155724; font-weight: bold;">${student.totalPaid} د</td>
-                        <td><span class="badge ${student.paymentStatus === 'مدفوع' || student.paymentStatus === 'نشط' ? 'badge-success' : student.paymentStatus === 'هدية' ? 'badge-info' : student.paymentStatus === 'متوقف' ? 'badge-danger' : 'badge-warning'}">${student.paymentStatus}</span></td>
+                        <td>${student.payments.length}</td>
+                        <td>${student.totalPaid} د</td>
+                        <td><span class="badge ${statusClass}">${statusText}</span></td>
                         <td>
                             <button class="btn-small btn-info" onclick="showStudentDetails(${student.id})">عرض</button>
                             <button class="btn-small btn-edit" onclick="editStudent(${student.id})">تعديل</button>
@@ -944,182 +1237,151 @@
             document.getElementById('studentsTable').innerHTML = html;
         }
 
-        function renderSchedule() {
-            let html = '';
-            const days = ['السبت', 'الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس'];
-            
-            days.forEach(day => {
-                html += `<div class="schedule-day">
-                    <h3>${day}</h3>`;
-                    
-                schedule[day].forEach(slot => {
-                    const stopClass = slot.stopped ? 'stopped' : '';
-                    html += `<div class="schedule-slot ${stopClass}">
-                        <div class="slot-info">
-                            <div class="slot-time">🕐 ${slot.time}</div>
-                            <div class="slot-students">👥 ${slot.students}</div>
-                        </div>`;
-                    
-                    if (slot.stopped) {
-                        html += `<div class="slot-stopped">🛑 متوقف</div>`;
-                    }
-                    
-                    html += `</div>`;
-                });
-                
-                html += `</div>`;
-            });
-            
-            document.getElementById('scheduleContent').innerHTML = html;
-        }
-
         function renderExpenses() {
-            const stats = getStats();
-            let html = `<div class="stats">
-                <div class="stat-card">
-                    <h3>💸 إجمالي المصاريف والبنود</h3>
+            const stats = calculateStats();
+
+            let html = `
+                <div class="stat-card warning">
+                    <h3>💸 إجمالي المصاريف</h3>
                     <div class="value">${stats.totalExpenses.toFixed(2)} د</div>
                 </div>
-                <div class="stat-card">
-                    <h3>💰 إجمالي الإيرادات</h3>
-                    <div class="value">${stats.totalRevenue.toFixed(2)} د</div>
-                </div>
-                <div class="stat-card">
-                    <h3>📈 صافي الأرباح/الرصيد</h3>
-                    <div class="value">${stats.netProfit.toFixed(2)} د</div>
-                </div>
-            </div>`;
-            
-            html += '<h3 class="section-title">📋 قائمة المصاريف والمكافآت ورأس المال</h3>';
-            
-            if (expenses.length === 0) {
-                html += '<div class="empty-state"><p>لا توجد بنود مسجلة</p></div>';
-            } else {
-                expenses.forEach(expense => {
-                    html += `<div class="expense-card">
-                        <h4>💰 ${expense.name}</h4>
-                        <div class="amount">${expense.amount} د</div>
-                        <p>📅 ${new Date(expense.date).toLocaleDateString('en-CA')}</p>
-                        ${expense.description ? `<p>📝 ${expense.description}</p>` : ''}
+
+                <h3 class="section-title">تفاصيل المصاريف</h3>
+                <div style="overflow-x: auto;">
+                    <table>
+                        <thead>
+                            <tr style="background: #ffc107; color: #333;">
+                                <th>اسم المصروف</th>
+                                <th>المبلغ</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+
+            customExpenses.forEach(expense => {
+                html += `<tr>
+                    <td><strong>${expense.name}</strong></td>
+                    <td>${expense.amount.toFixed(2)} د</td>
+                    <td>
+                        <button class="btn-small btn-edit" onclick="editExpense(${expense.id})">تعديل</button>
                         <button class="btn-small btn-delete" onclick="deleteExpense(${expense.id})">حذف</button>
-                    </div>`;
-                });
-            }
-            
+                    </td>
+                </tr>`;
+            });
+
+            html += `
+                        </tbody>
+                    </table>
+                </div>
+            `;
+
             document.getElementById('expensesContent').innerHTML = html;
         }
 
-        function renderAnalytics() {
-            const stats = getStats();
-            const paidStudents = students.filter(s => s.paymentStatus === 'مدفوع' || s.paymentStatus === 'نشط').length;
-            const pendingStudents = students.filter(s => s.paymentStatus === 'معلق').length;
-            
+        function renderProfit() {
+            const stats = calculateStats();
+
             let html = `
                 <div class="stats">
                     <div class="stat-card">
-                        <h3>💰 إجمالي الإيرادات المحصلة</h3>
-                        <div class="value">${stats.totalRevenue.toFixed(2)} د</div>
+                        <h3>💰 إيرادات الطالبات</h3>
+                        <div class="value">${stats.studentRevenue.toFixed(2)} د</div>
                     </div>
                     <div class="stat-card">
-                        <h3>💸 إجمالي المصاريف والمكافآت</h3>
-                        <div class="value">${stats.totalExpenses.toFixed(2)} د</div>
+                        <h3>💵 رأس المال</h3>
+                        <div class="value">+ ${stats.capitalAmount.toFixed(2)} د</div>
                     </div>
                     <div class="stat-card">
-                        <h3>📈 صافي الأرباح</h3>
-                        <div class="value">${stats.netProfit.toFixed(2)} د</div>
-                    </div>
-                    <div class="stat-card">
-                        <h3>👥 عدد الطالبات</h3>
-                        <div class="value">${stats.totalStudents}</div>
-                    </div>
-                    <div class="stat-card">
-                        <h3>✅ نشط/مدفوع</h3>
-                        <div class="value">${paidStudents}</div>
-                    </div>
-                    <div class="stat-card">
-                        <h3>⏳ معلق</h3>
-                        <div class="value">${pendingStudents}</div>
+                        <h3>📊 إجمالي الإيرادات</h3>
+                        <div class="value">${stats.totalIncome.toFixed(2)} د</div>
                     </div>
                 </div>
-                
-                <h3 class="section-title">📊 توزيع الأرباح حسب القسم</h3>
-                <div style="overflow-x: auto; width: 100%;">
-                    <table style="width: 100%; min-width: 900px;">
-                        <thead>
-                            <tr style="background: #667eea; color: white;">
-                                <th>📚 القسم</th>
-                                <th>👨‍🏫 المعلمة</th>
-                                <th>👥 عدد الطالبات</th>
-                                <th>💰 إجمالي الإيرادات</th>
-                                <th>💵 نصيب المعلمة (50%)</th>
-                            </tr>
-                        </thead>
-                        <tbody>`;
-            
-            const sections = ['قرآن', 'انجليزي', 'عربي'];
-            sections.forEach(section => {
-                const sectionStudents = students.filter(s => s.section === section);
-                if (sectionStudents.length > 0) {
-                    const sectionRevenue = sectionStudents.reduce((sum, s) => sum + s.totalPaid, 0);
-                    const sectionTeacher = teachers.find(t => {
-                        const t_students = students.filter(s => s.teacher === t.id);
-                        return t_students.some(s => s.section === section);
-                    });
-                    const teacherShare = sectionRevenue * 0.5;
-                    
-                    html += `<tr style="border-bottom: 2px solid #ddd;">
-                        <td><strong style="color: #667eea;">${section}</strong></td>
-                        <td><strong>${sectionTeacher ? sectionTeacher.name : '-'}</strong></td>
-                        <td style="text-align: center;"><span style="background: #e3f2fd; padding: 5px 10px; border-radius: 20px; font-weight: bold;">${sectionStudents.length}</span></td>
-                        <td style="background: #f0f7ff;"><strong style="color: #1976d2; font-size: 1.1em;">${sectionRevenue.toFixed(2)} د</strong></td>
-                        <td style="background: #f3e5f5;"><strong style="color: #7b1fa2; font-size: 1.1em;">${teacherShare.toFixed(2)} د</strong></td>
-                    </tr>`;
-                }
-            });
-            
-            html += `</tbody></table></div>`;
-            document.getElementById('analyticsContent').innerHTML = html;
+
+                <h3 class="section-title">حساب صافي الربح</h3>
+
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                    <div class="income-item">
+                        <strong>إجمالي الإيرادات</strong>
+                        <span>${stats.totalIncome.toFixed(2)} د</span>
+                    </div>
+
+                    <div class="expense-item" style="margin-top: 15px;">
+                        <strong>❌ خصم المصاريف</strong>
+                        <span>- ${stats.totalExpenses.toFixed(2)} د</span>
+                    </div>
+
+                    <div class="expense-item">
+                        <strong>❌ خصم نصيب المعلمات (50%)</strong>
+                        <span>- ${stats.teachersShare.toFixed(2)} د</span>
+                    </div>
+
+                    <div style="background: #d4edda; padding: 15px; border-radius: 5px; margin-top: 15px; border-right: 4px solid #28a745;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <strong style="color: #155724; font-size: 1.1em;">✅ صافي الربح النهائي</strong>
+                            <span style="color: #155724; font-weight: bold; font-size: 1.3em;">${stats.netProfit.toFixed(2)} د</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card success" style="margin-top: 20px;">
+                    <h3>✅ صافي الربح</h3>
+                    <div class="value">${stats.netProfit.toFixed(2)} د</div>
+                </div>
+            `;
+
+            document.getElementById('profitContent').innerHTML = html;
         }
 
         function renderTeachers() {
-            let html = `
-                <div style="overflow-x: auto; width: 100%;">
-                    <table style="width: 100%; min-width: 1000px;">
+            let html = `<div style="overflow-x: auto;">
+                    <table style="min-width: 1000px;">
                         <thead>
-                            <tr>
-                                <th>👨‍🏫 اسم المعلمة</th>
+                            <tr style="background: #667eea; color: white;">
+                                <th>👨‍🏫 المعلمة</th>
                                 <th>📚 القسم</th>
-                                <th>👥 عدد الطالبات</th>
-                                <th>📝 أسماء الطالبات</th>
-                                <th>📊 الإيرادات</th>
-                                <th>💵 الأرباح (50%)</th>
+                                <th>👥 الطالبات</th>
+                                <th>💰 الإيرادات</th>
+                                <th>💵 النصيب (50%)</th>
                             </tr>
                         </thead>
                         <tbody>`;
             
             teachers.forEach(teacher => {
                 const teacherStudents = students.filter(s => s.teacher === teacher.id);
-                const studentNames = teacherStudents.map(s => `<strong>${s.name}</strong> (${s.totalPaid} د)`).join('<br>');
                 const teacherRevenue = teacherStudents.reduce((sum, s) => sum + s.totalPaid, 0);
-                const teacherProfit = teacherRevenue * 0.5;
+                const teacherShare = teacherRevenue * 0.5;
                 
-                html += `<tr style="border-bottom: 2px solid #ddd;">
-                    <td><strong style="font-size: 1.1em; color: #667eea;">${teacher.name}</strong></td>
+                html += `<tr style="border-bottom: 1px solid #ddd;">
+                    <td><strong style="color: #667eea;">${teacher.name}</strong></td>
                     <td><strong>${teacher.section}</strong></td>
-                    <td><span style="background: #e3f2fd; padding: 5px 10px; border-radius: 20px; font-weight: bold;">${teacherStudents.length}</span></td>
-                    <td style="text-align: right;">${studentNames || '-'}</td>
-                    <td style="background: #f0f7ff;"><strong style="color: #1976d2;">${teacherRevenue.toFixed(2)} د</strong></td>
-                    <td style="background: #f3e5f5;"><strong style="color: #7b1fa2; font-size: 1.1em;">${teacherProfit.toFixed(2)} د</strong></td>
+                    <td>${teacherStudents.length}</td>
+                    <td><strong>${teacherRevenue.toFixed(2)} د</strong></td>
+                    <td><strong style="color: #667eea;">${teacherShare.toFixed(2)} د</strong></td>
                 </tr>`;
             });
             
             html += `</tbody></table></div>`;
+            
             document.getElementById('teachersContent').innerHTML = html;
+        }
+
+        function resetAllData() {
+            if (confirm('هل تريد إعادة تعيين البيانات؟')) {
+                students = JSON.parse(JSON.stringify(initialStudents));
+                customExpenses = JSON.parse(JSON.stringify(defaultExpenses));
+                sessions = JSON.parse(JSON.stringify(defaultSessions));
+                saveData();
+                filteredStudents = [...students];
+                renderAll();
+                renderSessions();
+                showMessage('تمت إعادة التعيين ✓');
+            }
         }
 
         function renderAll() {
             renderStudents();
-            renderSchedule();
+            renderSessions();
         }
 
         document.addEventListener('click', function(event) {
